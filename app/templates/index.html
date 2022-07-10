@@ -1,12 +1,16 @@
-{% extends './base.html' %}
+{% extends './layout.html' %}
 
-{% block estilo %}
+{% block head %}
 <link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}">
 {% endblock %}
 
-{% block contenido %}
+{% block content %}
 <p>
 	Bienvenido a mi primera web app en flask
 </p>
+
+<div>
+	<button><a href="/contact">Ir a contactos</a></button>
+</div>
 
 {% endblock %}

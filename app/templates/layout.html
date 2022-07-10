@@ -6,21 +6,21 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>{{data.title}}</title>
 	<link rel="stylesheet" href="{{url_for('static', filename='css/global.css')}}">
-	{% block estilo %}
-	{% endblock%}
 	<link rel="shorcut icon" href="{{url_for('static', filename='src/icono.ico')}}">
+	{% block head %}
+	{% endblock%}
 </head>
 
 <body>
 	<nav>
 		<!-- Uso de los nombres de los metodos para hipervinculos -->
-		<a href="{{url_for('index')}}">Index</a>
-		<a href="{{url_for('lenguages')}}">Lenguajes</a>
+		<a href="{{url_for('index')}}">Inicio</a>
+		<a href="{{url_for('contact')}}">Contactos</a>
 	</nav>
 	<h1>
 		{{data.header}}
 	</h1>
-	{% block contenido %}
+	{% block content %}
 	{% endblock %}
 
 	<script src="{{url_for('static', filename='js/index.js')}}"></script>

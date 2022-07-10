@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends './layout.html' %}
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Add contact</title>
-</head>
-
-<body>
+{% block content %}
 	<!-- recive posibles mensajes flash enviados por el servidor -->
 	{% with messages = get_flashed_messages()%}
 	{% if messages %}
@@ -22,7 +15,7 @@
 		<input type="text" name="fullname" placeholder="fullname" id="">
 		<input type="text" name="phone" placeholder="phone" id="">
 		<input type="text" name="email" placeholder="email" id="">
-		<button type="submit">Save</button>
+		<button type="submit">Guardar</button>
 	</form>
 
 
@@ -50,6 +43,4 @@
 		</tbody>
 	</table>
 
-</body>
-
-</html>
+{% endblock %}

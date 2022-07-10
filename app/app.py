@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
+from conn import conn
 from flask_mysqldb import MySQL
 
 
@@ -6,10 +7,7 @@ from flask_mysqldb import MySQL
 app = Flask(__name__)
 
 # CONNECT MYSQL
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'admin'
-app.config['MYSQL_PASSWORD'] = 'admin'
-app.config['MYSQL_DB'] = 'flaskcontactapp'
+conn(app)
 mysql = MySQL(app)
 
 # INIT SESSION - memory app
@@ -94,11 +92,15 @@ def index():
 
 @app.route('/contact')
 def contact():
+    data_2 = {
+        'title': 'Contactos',
+        'header':'Contactos'
+    }
     cur = mysql.connection.cursor()
     cur.execute('SELECT * FROM contacts')
     data = cur.fetchall()
     print(data)
-    return render_template('contact.html', contacts = data)
+    return render_template('contact.html', data = data_2, contacts = data)
 
 
 @app.route('/add_contact', methods=['POST'])
@@ -159,14 +161,6 @@ def delete_contact(id):
 
     return redirect(url_for('contact'))
 
-
-@app.route('/lenguajes')
-def lenguages():
-    data={
-        'hay_lenguajes':True,
-        'lenguajes':['PHP','Python','JavaScript']
-    }
-    return render_template('lenguajes.html',data=data)
 
 
 # RUN APP
