@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{{data.title}}</title>
+	<link rel="stylesheet" href="{{url_for('static', filename='css/global.css')}}">
+	{% block estilo %}
+	{% endblock%}
+	<link rel="shorcut icon" href="{{url_for('static', filename='src/icono.ico')}}">
+</head>
+
+<body>
+	<nav>
+		<!-- Uso de los nombres de los metodos para hipervinculos -->
+		<a href="{{url_for('index')}}">Index</a>
+		<a href="{{url_for('lenguages')}}">Lenguajes</a>
+	</nav>
+	<h1>
+		{{data.header}}
+	</h1>
+	{% block contenido %}
+	{% endblock %}
+
+	<script src="{{url_for('static', filename='js/index.js')}}"></script>
+</body>
+
+</html>
