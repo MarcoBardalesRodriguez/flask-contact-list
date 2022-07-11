@@ -101,6 +101,58 @@ Callbacks
 
 ================================================================================================
 ================================================================================================
+
+DEFINIR RUTAS
+
+@app.route('/')
+
+or
+
+app.add_url_rule('/',view_func=index)
+
+
+EJEMPLOS DE RUTAS
+
+
+@app.route('/holaMundo')
+def hola_mundo():
+    return 'holaMundo'
+
+
+# Uso de un parametro al crear la ruta -- Contenido dinamico
+
+@app.route('/saludo/<nombre>')
+def saludo(nombre):
+    return 'Hola, {0}!'.format(nombre)
+
+
+@app.route('/suma/<int:valor1>/<int:valor2>')
+def suma(valor1,valor2):
+    return 'La suma es: {0}'.format(valor1+valor2)
+
+
+@app.route('/perfil/<nombre>/<int:edad>')
+def perfil(nombre,edad):
+    return 'Hola {0} tu edad es: {1}'.format(nombre,edad)
+
+
+
+# Obtener un valor usando Query String
+metodos >>> GET
+            POST
+            PUT
+            DELETE
+
+@app.route('/datos')
+def datos():
+    # ejm request >>> /datos?valor1=Python
+    # ejm request >>> /datos?valor1=Python&valor2=20
+    # print(request.args)
+    valor1 = request.args.get('valor1')
+    valor2 = int(request.args.get('valor2'))
+    return 'Estos son los datos: {0}, {1}'.format(valor1,(valor2+200))
+
+
 ================================================================================================
 ================================================================================================
 ================================================================================================

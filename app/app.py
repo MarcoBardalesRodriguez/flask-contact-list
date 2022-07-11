@@ -25,60 +25,6 @@ def after_request(response):
     print('Despues de la peticion ...')
     return response
 
-"""
-
-# DEFINIR RUTAS
-
-@app.route('/')
-
-or
-
-app.add_url_rule('/',view_func=index)
-
-
-# EJEMPLOS DE RUTAS
-
-
-@app.route('/holaMundo')
-def hola_mundo():
-    return 'holaMundo'
-
-
-# Uso de un parametro al crear la ruta -- Contenido dinamico
-
-@app.route('/saludo/<nombre>')
-def saludo(nombre):
-    return 'Hola, {0}!'.format(nombre)
-
-
-@app.route('/suma/<int:valor1>/<int:valor2>')
-def suma(valor1,valor2):
-    return 'La suma es: {0}'.format(valor1+valor2)
-
-
-@app.route('/perfil/<nombre>/<int:edad>')
-def perfil(nombre,edad):
-    return 'Hola {0} tu edad es: {1}'.format(nombre,edad)
-
-
-
-# Obtener un valor usando Query String
-metodos >>> GET
-            POST
-            PUT
-            DELETE
-
-@app.route('/datos')
-def datos():
-    # ejm request >>> /datos?valor1=Python
-    # ejm request >>> /datos?valor1=Python&valor2=20
-    # print(request.args)
-    valor1 = request.args.get('valor1')
-    valor2 = int(request.args.get('valor2'))
-    return 'Estos son los datos: {0}, {1}'.format(valor1,(valor2+200))
-
-"""
-
 
 @app.route('/')
 def index():
@@ -92,15 +38,15 @@ def index():
 
 @app.route('/contact')
 def contact():
-    data_2 = {
+    data = {
         'title': 'Contactos',
         'header':'Contactos'
     }
     cur = mysql.connection.cursor()
     cur.execute('SELECT * FROM contacts')
-    data = cur.fetchall()
-    print(data)
-    return render_template('contact.html', data = data_2, contacts = data)
+    data_contacts = cur.fetchall()
+    print(data_contacts)
+    return render_template('contact.html', data = data, contacts = data_contacts)
 
 
 @app.route('/add_contact', methods=['POST'])
@@ -125,12 +71,15 @@ def add_contact():
 
 @app.route('/edit_contact/<id>')
 def get_contact(id):
+    data = {
+        'title': 'Contacto',
+        'header':'Editar contacto'
+    }
     cur = mysql.connection.cursor()
-    cur.execute(f'SELECT * FROM contacts WHERE id = {id}')
-    data = cur.fetchall()
-    print(data[0])
+    cur.execute('SELECT * FROM contacts WHERE id = %s', (id))
+    data_contact = cur.fetchall()
 
-    return render_template('edit_contact.html', contact = data[0])
+    return render_template('edit_contact.html', data = data, contact = data_contact[0])
 
 
 @app.route('/update_contact/<id>', methods = ['POST'])

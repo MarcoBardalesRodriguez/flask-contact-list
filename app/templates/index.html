@@ -1,16 +1,18 @@
 {% extends './layout.html' %}
 
-{% block head %}
-<link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}">
-{% endblock %}
 
 {% block content %}
-<p>
-	Bienvenido a mi primera web app en flask
-</p>
+<div class="container d-flex flex-column align-items-center justify-content-center">
+	<p class="text-center m-4">
+		Bienvenido a mi primera web app en flask
+	</p>
+	
+	<div class="m-4">
+		<button type="button" class="btn btn-primary btn-lg">
+			<a class="text-decoration-none" style="color: #fff;" href="/contact">Ir a contactos</a>
+		</button>
+	</div>
 
-<div>
-	<button><a href="/contact">Ir a contactos</a></button>
 </div>
 
 {% endblock %}
