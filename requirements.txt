@@ -10,11 +10,10 @@ Flask-MySQLdb==1.0.1
 importlib-metadata==4.8.3
 importlib-resources==5.4.0
 itsdangerous==2.0.1
-Jinja2==3.0.3
 Jinja2==2.11.3
 MarkupSafe==2.0.1
 mysql-connector-python==8.0.29
-mysqlclient==				2.1.1
+mysqlclient==2.1.1
 Pillow==8.4.0
 platformdirs==2.4.0
 protobuf==3.19.4
