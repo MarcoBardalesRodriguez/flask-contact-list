@@ -55,7 +55,6 @@ def contact():
         'title': 'Contactos',
         'header':'Contactos'
     }
-    # cur = mysql.get_db().cursor()
     conn = mysql.connection
     cur = conn.cursor()
     cur.execute('SELECT * FROM contacts')
@@ -64,65 +63,69 @@ def contact():
     return render_template('contact.html', data = data, contacts = data_contacts)
 
 
-# @app.route('/add_contact', methods=['POST'])
-# def add_contact():
-#     if request.method == 'POST':
-#         fullname = request.form['fullname']
-#         phone = request.form['phone']
-#         email = request.form['email']
-#         print(fullname,phone,email)
+@app.route('/add_contact', methods=['POST'])
+def add_contact():
+    if request.method == 'POST':
+        fullname = request.form['fullname']
+        phone = request.form['phone']
+        email = request.form['email']
+        print(fullname,phone,email)
 
-#         cur = mysql.connect().cursor()
-#         cur.execute('INSERT INTO contacts (fullname, phone, email) VALUES(%s, %s, %s)', 
-#                     (fullname, phone, email))
-#         mysql.connect().commit()
+        conn = mysql.connection
+        cur = conn.cursor()
+        cur.execute('INSERT INTO contacts (fullname, phone, email) VALUES(%s, %s, %s)', 
+                    (fullname, phone, email))
+        mysql.connection.commit()
 
-#         flash('Contact added successfully')
+        flash('Contact added successfully')
 
-#         #redirecciona a una ruta determinada, usando el nombre de la funcion
-#         return redirect(url_for('contact'))
-
-
-# @app.route('/edit_contact/<id>')
-# def get_contact(id):
-#     data = {
-#         'title': 'Contacto',
-#         'header':'Editar contacto'
-#     }
-#     cur = mysql.connect().cursor()
-#     cur.execute('SELECT * FROM contacts WHERE id = %s', (id))
-#     data_contact = cur.fetchall()
-
-#     return render_template('edit_contact.html', data = data, contact = data_contact[0])
+        #redirecciona a una ruta determinada, usando el nombre de la funcion
+        return redirect(url_for('contact'))
 
 
-# @app.route('/update_contact/<id>', methods = ['POST'])
-# def update_contact(id):
-#     if request.method == 'POST':
-#         fullname = request.form['fullname']
-#         phone = request.form['phone']
-#         email = request.form['email']
-#         cur = mysql.connect().cursor()
-#         cur.execute("""
-#                     UPDATE contacts
-#                     SET fullname = %s,
-#                         email = %s,
-#                         phone = %s
-#                     WHERE id = %s
-#                     """, (fullname,email,phone,id))
-#         mysql.connect().commit()
-#         flash('Contact updated successfully')
-#         return redirect(url_for('contact'))
+@app.route('/edit_contact/<id>')
+def get_contact(id):
+    data = {
+        'title': 'Contacto',
+        'header':'Editar contacto'
+    }
+    conn = mysql.connection
+    cur = conn.cursor()
+    cur.execute('SELECT * FROM contacts WHERE id = %s', (id))
+    data_contact = cur.fetchall()
+
+    return render_template('edit_contact.html', data = data, contact = data_contact[0])
 
 
-# @app.route('/delete_contact/<string:id>')
-# def delete_contact(id):
-#     cur = mysql.connect().cursor()
-#     cur.execute(f'DELETE FROM contacts WHERE id = {id}')
-#     mysql.connect().commit()
-#     flash('Contact removed successfully')
+@app.route('/update_contact/<id>', methods = ['POST'])
+def update_contact(id):
+    if request.method == 'POST':
+        fullname = request.form['fullname']
+        phone = request.form['phone']
+        email = request.form['email']
+        conn = mysql.connection
+        cur = conn.cursor()
+        cur.execute("""
+                    UPDATE contacts
+                    SET fullname = %s,
+                        email = %s,
+                        phone = %s
+                    WHERE id = %s
+                    """, (fullname,email,phone,id))
+        mysql.connection.commit()
+        flash('Contact updated successfully')
+        return redirect(url_for('contact'))
 
-#     return redirect(url_for('contact'))
+
+@app.route('/delete_contact/<string:id>')
+def delete_contact(id):
+    conn = mysql.connection
+    cur = conn.cursor()
+    cur.execute(f'DELETE FROM contacts WHERE id = {id}')
+    mysql.connection.commit()
+    flash('Contact removed successfully')
+
+    return redirect(url_for('contact'))
 
 
 
