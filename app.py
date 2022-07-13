@@ -10,14 +10,6 @@ app = Flask(__name__)
 
 # CONNECT MYSQL
 
-# app.config['MYSQL_DATABASE_HOST'] = '5qxg1masrhl3.us-east-3.psdb.cloud'
-# app.config['MYSQL_DATABASE_USER'] = 'dqgl0x2xwn0p'
-# app.config['MYSQL_DATABASE_PASSWORD'] = 'pscale_pw_GOwrg1nO7RiFtk5zLwFqtffdT2-eL2eZYKm8GEHrbEA'
-# app.config['MYSQL_DATABASE_DB'] = 'mysql-flask-contacts-app'
-# app.config['MYSQL_PORT'] = 3306
-# app.config["MYSQL_CURSORCLASS"] = "DictCursor"
-# app.config["MYSQL_CUSTOM_OPTIONS"] = {"ssl": {"ca": "/etc/ssl/cert.pem"}}
-
 
 app.config['MYSQL_HOST'] = '5qxg1masrhl3.us-east-3.psdb.cloud'
 app.config['MYSQL_USER'] = 'dqgl0x2xwn0p'
