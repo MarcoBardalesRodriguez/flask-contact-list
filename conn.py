@@ -1,13 +1,11 @@
-
 def conn(app):
-    app.config['MYSQL_ADDON_HOST'] = 'bms17s3vmfgx4kamuxz7-mysql.services.clever-cloud.com'
-    app.config['MYSQL_ADDON_USER'] = 'u0d9oj6pizkce9bl'
-    app.config['MYSQL_ADDON_PASSWORD'] = 'GdcXWvf7eM4C7s8PWboG'
-    app.config['MYSQL_ADDON_DB'] = 'bms17s3vmfgx4kamuxz7'
+    app.config['MYSQL_DATABASE_HOST'] = '5qxg1masrhl3.us-east-3.psdb.cloud'
+    app.config['MYSQL_DATABASE_USER'] = 'dqgl0x2xwn0p'
+    app.config['MYSQL_DATABASE_PASSWORD'] = 'pscale_pw_GOwrg1nO7RiFtk5zLwFqtffdT2-eL2eZYKm8GEHrbEA'
+    app.config['MYSQL_DATABASE_DB'] = 'mysql-flask-contacts-app'
 
-# =bms17s3vmfgx4kamuxz7-mysql.services.clever-cloud.com
-# =u0d9oj6pizkce9bl
-# =GdcXWvf7eM4C7s8PWboG
-# =bms17s3vmfgx4kamuxz7
-# MYSQL_ADDON_PORT=3306
-# MYSQL_ADDON_URI=mysql://u0d9oj6pizkce9bl:GdcXWvf7eM4C7s8PWboG@bms17s3vmfgx4kamuxz7-mysql.services.clever-cloud.com:3306/bms17s3vmfgx4kamuxz7
+
+# HOST=5qxg1masrhl3.us-east-3.psdb.cloud
+# USERNAME=dqgl0x2xwn0p
+# PASSWORD=pscale_pw_GOwrg1nO7RiFtk5zLwFqtffdT2-eL2eZYKm8GEHrbEA
+# DATABASE=mysql-flask-contacts-app
